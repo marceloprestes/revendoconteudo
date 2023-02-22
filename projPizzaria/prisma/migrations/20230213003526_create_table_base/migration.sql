@@ -39,7 +39,7 @@ CREATE TABLE `orders` (
     `id` VARCHAR(191) NOT NULL,
     `table` INTEGER NOT NULL,
     `status` BOOLEAN NOT NULL DEFAULT false,
-    `draft` BOOLEAN NOT NULL DEFAULT false,
+    `draft` BOOLEAN NOT NULL DEFAULT true,
     `name` VARCHAR(191) NULL,
     `created_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -63,7 +63,7 @@ CREATE TABLE `items` (
 ALTER TABLE `products` ADD CONSTRAINT `products_category_id_fkey` FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `items` ADD CONSTRAINT `items_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `items` ADD CONSTRAINT `items_order_id_fkey` FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `items` ADD CONSTRAINT `items_order_id_fkey` FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `items` ADD CONSTRAINT `items_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
